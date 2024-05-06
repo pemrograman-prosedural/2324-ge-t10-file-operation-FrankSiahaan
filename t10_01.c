@@ -70,6 +70,11 @@ int main(int _argc, char **_argv)
     while (1)
     {
         fgets(cmd, sizeof(cmd), stdin);    
+      
+        if (cmd[strlen(cmd) - 1] == '\n' || cmd[strlen(cmd) - 1] == '\r')
+        {
+            cmd[strlen(cmd) - 1] = '\0';
+        }
         if(strcmp(cmd, "---") == 0)
         {
             break;
