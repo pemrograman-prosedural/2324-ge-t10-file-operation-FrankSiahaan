@@ -24,10 +24,11 @@ void print_student(struct student_t *_student, int jumlah)
 {
     for (int i = 0; i < jumlah; i++)
     {
-        if (_student[i].gender == 0)
+        if (_student[i].gender == GENDER_MALE)
         {
             printf("%s|%s|%s|male\n", _student[i].id, _student[i].name, _student[i].year);
-        }else {
+        }else if(_student[i].gender == GENDER_FEMALE)
+        {
             printf("%s|%s|%s|female\n", _student[i].id, _student[i].name, _student[i].year);
         }
         
@@ -39,14 +40,14 @@ void print_student_detail(struct student_t *_student, int jumlah){
     {
         if (_student[i].dorm == NULL)
         {
-            if (_student[i].gender == 0)
+            if (_student[i].gender == GENDER_MALE)
         {
             printf("%s|%s|%s|male|unassigned\n", _student[i].id, _student[i].name, _student[i].year);
         }else {
             printf("%s|%s|%s|female|unassigned\n", _student[i].id, _student[i].name, _student[i].year);
         }
         }else {
-            if (_student[i].gender == 0)
+            if (_student[i].gender == GENDER_MALE)
         {
             printf("%s|%s|%s|male|%s\n", _student[i].id, _student[i].name, _student[i].year, _student[i].dorm->name);
         }else {

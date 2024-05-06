@@ -20,7 +20,6 @@ int main(int _argc, char **_argv)
     int capacity;
     char cmd[255];
     
-
     FILE *filestd;
     filestd = fopen("./storage/student-repository.txt", "r");
     while (fgets(buffer, 100 , filestd) != NULL)
@@ -35,10 +34,10 @@ int main(int _argc, char **_argv)
         strcpy(year, token);
 
         token = strtok(NULL, "|");
-        if (strcmp(token, "male") == 0)
+        if (strcmp(token, "male\n") == 0)
         {
             students[i] = create_student(id, name, year, GENDER_MALE);
-        } else if (strcmp(token, "female") == 0)
+        } else if (strcmp(token, "female\n") == 0)
         {
             students[i] = create_student(id, name, year, GENDER_FEMALE);
         }
@@ -57,10 +56,10 @@ int main(int _argc, char **_argv)
         capacity = atoi(token);
 
         token = strtok(NULL, "|");
-        if (strcmp(token, "male") == 0)
+        if (strcmp(token, "male\n") == 0)
         {
             dorms[j] = create_dorm(named, capacity, GENDER_MALE);
-        } else if (strcmp(token, "female") == 0)
+        } else if (strcmp(token, "female\n") == 0)
         {
             dorms[j] = create_dorm(named, capacity, GENDER_FEMALE);
         }
@@ -85,13 +84,16 @@ int main(int _argc, char **_argv)
             if (strcmp(cmd, "dorm-print-all-detail") == 0)
             {
                 print_dorm_detail(dorms, j);
-            }else if(strcmp(cmd, "student-print-all-detail") == 0) 
+            }
+            else if(strcmp(cmd, "student-print-all-detail") == 0) 
             {
                 print_student_detail(students, i);
-            }else if (strcmp(cmd, "student-print-all") == 0)
+            }
+            else if (strcmp(cmd, "student-print-all") == 0)
             {
                 print_student(students, i);
-            }else if(strcmp(cmd, "dorm-print-all") == 0) {
+            }
+            else if(strcmp(cmd, "dorm-print-all") == 0) {
                 print_dorm(dorms, j);
             }
             
