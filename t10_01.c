@@ -81,6 +81,8 @@ int main(int _argc, char **_argv)
         }
         else
         {
+            token = strtok(cmd, "#");
+
             if (strcmp(cmd, "dorm-print-all-detail") == 0)
             {
                 print_dorm_detail(dorms, j);
@@ -96,12 +98,49 @@ int main(int _argc, char **_argv)
             else if(strcmp(cmd, "dorm-print-all") == 0) {
                 print_dorm(dorms, j);
             }
-            
-        }
-        }
+            else if(strcmp(token, "student-add") == 0) {
+                token = strtok(NULL, "#");
+                strcpy(id, token);
+
+                token = strtok(NULL, "#");
+                strcpy(name, token);
+
+                token = strtok(NULL, "#");
+                strcpy(year, token);
+
+                token = strtok(NULL, "#");
+                if (strcmp(token, "male") == 0)
+                {
+                    students[i] = create_student(id, name, year, GENDER_MALE);
+                }
+                else if (strcmp(token, "female") == 0)
+                {
+                    students[i] = create_student(id, name, year, GENDER_FEMALE);
+                }
+                i++;
+            }
+            else if(strcmp(token, "dorm-add") == 0) {
+                token = strtok(NULL, "#");
+                strcpy(name, token);
+
+                token = strtok(NULL, "#");
+                capacity = atoi(token);
+
+                token = strtok(NULL, "#");
+                 if (strcmp(token, "male") == 0)
+                {
+                    dorms[j] = create_dorm(name, capacity, GENDER_MALE);
+                }
+                else if (strcmp(token, "female") == 0)
+                {
+                    dorms[j] = create_dorm(name, capacity, GENDER_FEMALE);
+                }
+                j++;
+            }
+        }}
 
     free(students);
     free(dorms);
-
+    
     return 0;
 }
